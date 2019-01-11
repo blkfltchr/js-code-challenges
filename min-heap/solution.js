@@ -49,7 +49,8 @@ function MinHeap() {
 			if (heap.length > 2) {
 				// create an index for the inserted number
 				let index = heap.length - 1;
-				// start a check as long the newly inserted index is less than its parent (see the parent equation above)
+				// start a check as long the newly inserted index 
+				// is less than its parent (see the parent equation above)
 				while (heap[index] < heap[Math.floor(index / 2)]) {
 					// make sure the function stops when you reach the root node
 					if (index >= 1) {
@@ -89,7 +90,8 @@ function MinHeap() {
 				let root = 1;
 				let leftChild = 2 * root;
 				let rightChild = leftChild + 1;
-				// while the root node is great than its left or right child, we will do the following (move it down to its appropriate spot)
+				// while the root node is great than its left or right child, we will do 
+				// the following (move it down to its appropriate spot)
 				while (heap[root] >= heap[leftChild] || heap[root] >= heap[rightChild]) {
 					// if the left node is greater than the right node
 					if (heap[leftChild] < heap[rightChild]) {
