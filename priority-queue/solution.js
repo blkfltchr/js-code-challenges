@@ -46,11 +46,13 @@ console.log(q.isEmpty())
 q.enqueue('Study data structures')
 q.enqueue('Complete hackerrank warmup challenges')
 console.log(q.peek())
-
+// Study data structures
 q.dequeue()
 console.log(q.peek())
-
+// Complete hackerrank warmup challenges
 q.enqueue('Understand queue data structure inside and out', true)
 console.log(q.peek())
+// Understand queue data structure inside and out
 q.dequeue()
 console.log(q.peek())
+// Complete hackerrank warmup challenges

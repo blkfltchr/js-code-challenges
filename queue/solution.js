@@ -28,32 +28,34 @@ function createQueue() {
     }
 }
 
-const q = createQueue()
-console.log(q.isEmpty())
-// true
+// const q = createQueue()
+// console.log(q.isEmpty())
+// // true
 
-q.enqueue('Study data structures')
-q.enqueue('Explain them to someone who is unfamiliar with the topic')
-q.enqueue('Identify gaps in my understanding')
-q.enqueue('Review and simplify')
-console.log(q.peek())
-// Study data structures
+// q.enqueue('Study data structures')
+// q.enqueue('Explain them to someone who is unfamiliar with the topic')
+// q.enqueue('Identify gaps in my understanding')
+// q.enqueue('Review and simplify')
+// console.log(q.peek())
+// // Study data structures
 
-q.dequeue()
-console.log(q.peek())
-// Explain them to someone who is unfamiliar with the topic
+// q.dequeue()
+// console.log(q.peek())
+// // Explain them to someone who is unfamiliar with the topic
 
-q.dequeue()
-console.log(q.peek())
-// Identify gaps in my understanding
+// q.dequeue()
+// console.log(q.peek())
+// // Identify gaps in my understanding
 
-console.log(q.isEmpty())
-// false
+// console.log(q.isEmpty())
+// // false
 
-q.dequeue()
-console.log(q.peek())
-// Review and simplify
+// q.dequeue()
+// console.log(q.peek())
+// // Review and simplify
 
-q.dequeue()
-console.log(q.isEmpty())
-// true
+// q.dequeue()
+// console.log(q.isEmpty())
+// // true
+
+exports.createQueue = createQueue
