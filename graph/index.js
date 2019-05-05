@@ -1,3 +1,5 @@
+const { createQueue } = require('../queue/solution')
+
 // A graph is a collection of nodes or vertices
 // that may or may not point to other nodes.
 // The connections are known as edges. 
@@ -51,36 +53,89 @@ function createGraph(directed = false) {
         // we want to visualize our graph by showing the nodes and neighbors in the console
         print() {
             // we'll return a string derived from our nodes
-            return nodes.map(({ key, neighbors }) => {
+            return nodes.map(({ neighbors, key }) => {
                 // the string will start with the key
                 let result = key
                 // if there are neighbors we'll map over them and concatenate them into our result
                 if (neighbors.length) {
                     result += ` => ${neighbors
-                        .map(neighbor => neighbor.key)
+                        .map(node => node.key)
                         .join(' ')}`
                 }
 
                 return result
             })
             .join('\n')
-        }
+        },
+
+        // Breadth first search
+
+        breadFirstSearch(startingNodeKey, visitFn) {
+            const startingNode = this.getNode(startingNodeKey)
+            const visited = nodes.reduce((acc, node) => {
+              acc[node.key] = false
+              return acc
+            }, {})
+            const queue = createQueue()
+            queue.enqueue(startingNode)
+      
+            while (!queue.isEmpty()) {
+              const currentNode = queue.dequeue()
+      
+              if (!visited[currentNode.key]) {
+                visitFn(currentNode)
+                visited[currentNode.key] = true
+              }
+      
+              currentNode.neighbors.forEach(node => {
+                if (!visited[node.key]) {
+                  queue.enqueue(node)
+                }
+              })
+            }
+        },
     }
 }
 
-const  graph = createGraph(true)
 
-graph.addNode('Husband')
-graph.addNode('Wife')
-graph.addNode('Cat')
-graph.addNode('Dog')
+// const  graph = createGraph(true)
 
-graph.addEdge('Husband', 'Wife')
-graph.addEdge('Wife', 'Husband')
-graph.addEdge('Husband', 'Dog')
-graph.addEdge('Wife', 'Dog')
-graph.addEdge('Dog', 'Husband')
-graph.addEdge('Dog', 'Husband')
-graph.addEdge('Wife', 'Cat')
+// graph.addNode('Husband')
+// graph.addNode('Wife')
+// graph.addNode('Cat')
+// graph.addNode('Dog')
 
-console.log(graph.print())
+// graph.addEdge('Husband', 'Wife')
+// graph.addEdge('Wife', 'Husband')
+// graph.addEdge('Husband', 'Dog')
+// graph.addEdge('Wife', 'Dog')
+// graph.addEdge('Dog', 'Husband')
+// graph.addEdge('Dog', 'Husband')
+// graph.addEdge('Wife', 'Cat')
+
+// console.log(graph.print())
+
+const graph = createGraph(true)
+const nodes = ['a', 'b', 'c', 'd', 'e', 'f']
+const edges = [
+  ['a', 'b'],
+  ['a', 'e'],
+  ['a', 'f'],
+  ['b', 'd'],
+  ['b', 'e'],
+  ['c', 'b'],
+  ['d', 'c'],
+  ['d', 'e']
+]
+
+nodes.forEach(node => {
+  graph.addNode(node)
+})
+
+edges.forEach(nodes => {
+  graph.addEdge(...nodes)
+})
+
+graph.breadFirstSearch('a', node => {
+  console.log(node.key)
+})
